@@ -13,7 +13,7 @@ app.listen(process.env.PORT); //Ricevi richieste che ti lasciano online
 const Discord = require("discord.js"); //Connessione alla libreria Discord.js
 const client = new Discord.Client(); //Creazione di un nuovo client
 const config = require("./config.json"); //Incollare il prefisso del bot per le risposte ai comandi
-require("discord-buttons")(client) //Installiamo il package che ci servirà per il tutorial
+
 client.on('message', message => {
 	if (message.author.bot) return;
 	if (message.channel.type == 'dm') return;
@@ -35,17 +35,6 @@ client.on('message', message => {
 		commandFile.run(client, message, args);
 	} catch (err) {}
 });
-const TicTacToe = require('discord-tictactoe');
-const tictactoe = new TicTacToe({ language: 'it' })
-
-client.on('message', message => {
-  if (message.content.startsWith('-ttt')) {
-    tictactoe.handleMessage(message);
-  }
-
-});
-
-
 
 
 
