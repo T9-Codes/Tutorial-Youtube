@@ -13,6 +13,7 @@ app.listen(process.env.PORT); //Ricevi richieste che ti lasciano online
 const Discord = require("discord.js"); //Connessione alla libreria Discord.js
 const client = new Discord.Client(); //Creazione di un nuovo client
 const config = require("./config.json"); //Incollare il prefisso del bot per le risposte ai comandi
+require("discord-buttons")(client) //Assicurati di aver definito client se usi bot sostituisci client con bot
 
 client.on('message', message => {
 	if (message.author.bot) return;
