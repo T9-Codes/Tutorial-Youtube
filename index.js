@@ -14,6 +14,7 @@ const Discord = require("discord.js"); //Connessione alla libreria Discord.js
 const client = new Discord.Client(); //Creazione di un nuovo client
 const config = require("./config.json"); //Incollare il prefisso del bot per le risposte ai comandi
 require("discord-buttons")(client) //Assicurati di aver definito client se usi bot sostituisci client con bot
+const db = require("quick.db")
 
 client.on('message', message => {
 	if (message.author.bot) return;
@@ -156,6 +157,25 @@ distube.on('error', (message, e) => {
 message.channel.send("La musica è finita :C")
 		})
 
+
+client.on("message", async (message) => {
+
+	let language = db.fetch(`setlang_${message.guild.id}`)
+
+	if(language === "it") {
+		language = require("./lang/it.json")
+	}
+
+	if(language === "en") {
+		language = require("./lang/en.json")
+	}
+
+	if(language === null) {
+		language = require("./lang/en.json")
+	}
+
+client.lang = language; 
+})
 
 
 client.login(process.env.TOKEN); //Accede al token e fa partire il bot
